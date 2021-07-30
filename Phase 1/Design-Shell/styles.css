@@ -13,6 +13,27 @@
 
   }
 
+  /* all paragraphs */
+p{
+  font-family: 'Times New Roman', Times, serif;
+  color:#2b779656;
+}
+
+/* all headings */
+h4{
+text-align: center;
+color:rgb(212, 154, 154);
+font-family:Snell Roundhand, cursive;
+}
+
+/* all div tags */
+div{
+border: 5px rgb(212, 154, 154);
+ border-width: 1px;
+ background-color:whitesmoke;
+
+}
+
 
 body {
     font-family: Arial;
