@@ -2,7 +2,7 @@ let objects = [];
 
 function storeData() {
 
-//    getData();
+    getData();
  
  let obj = {
     clientName: document.getElementById("cname").value,
