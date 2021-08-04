@@ -90,9 +90,14 @@ body {
 
 
   footer {
+    
     display: flex;
     justify-content: center;
     padding: 1px;
     background-color: #fefeff;
-    color: #fff;
+    color: rgb(226, 213, 213);
+}
+
+footer p{
+  color: rgb(98, 134, 180);
 }
