@@ -78,7 +78,7 @@ for (let i = 0; i < objects.length; i++) {
 
             //card title 
             const topnumber = document.createElement('div');
-            topnumber.className ="card-title h4 text-warning p-2 "
+            topnumber.className ="card-title h4 text-warning p-2 title-over"
                 //CHILD name 
                 topnumber.innerHTML = objects[i].title;
             //card text
