@@ -1,0 +1,52 @@
+.inputPadding{
+    padding-left: 40px;
+}
+/* .textarea-width{
+width: ;
+} */
+
+.form-div-width{
+    width: 75%;
+   
+}
+.cardm{
+    box-shadow: 0 4px 8px 0 rgb(237, 194, 53);
+    width: 300px;
+    height: 380px;
+    padding: 2px 16px;
+    margin-left: 20px;
+    text-decoration: blue;
+}
+
+.table {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    text-decoration: blue;
+    width: 40%;
+    height: 200px;
+    padding: 2px 16px;
+  }
+  
+  .table:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+ 
+  .body2{
+    background-color: #0e0e0e;
+  }
+
+  .text-over{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* number of lines to show */
+    -webkit-box-orient: vertical;
+
+  }
+  .myImage{
+      margin-top: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.905);
+    box-shadow: 0 4px 8px 0 rgb(237, 194, 53);
+
+      width: 280px;
+      height: 160px;
+  }

@@ -17,8 +17,8 @@ localStorage.setItem("proObj", JSON.stringify(objects)) ;
 
 //console.log(test);
 
-console.log(objects);
-console.log("Data stored in local storage");
+// console.log(objects);
+// console.log("Data stored in local storage");
 //displayData();
 }
 
@@ -65,6 +65,7 @@ while(--x){
 
  
  }
+ 
  calcTotalBudget();
  let totatBudget2 = "Total Budget is : $" +totalBudget ;
  var r2 =tbl.insertRow();
