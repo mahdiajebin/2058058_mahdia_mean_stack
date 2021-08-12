@@ -71,7 +71,7 @@ text-align: center;
 text-align: center;
 float:center;
 width: 500px ;
-background-color: rgb(39, 6, 61);
+background-color: #d5cece;
   }
 #FT{
  
@@ -83,5 +83,10 @@ background-color: rgb(39, 6, 61);
     margin-right: auto;
   }
 
-
+  .cart-images{
+    width:60px;
+    height: 80px;
+    border: 4px red;
+    
+    }
  

@@ -1,3 +1,4 @@
+"use strict";
 if (document.readyState == 'loading') {
     document.addEventListener('DOMContentLoaded', ready);
 }
@@ -9,13 +10,13 @@ var itemsobj = [];
 //    // clearBox();
 //   //getData();
 //  // var diva = document.getElementsByClassName('thecard')[0];
-//     let obj: Product= {
+//     var obj: Product= {
 //         //  itemImages: (<HTMLInputElement>document.getElementsByName("itemImage")).src,
 //         itemImages:(<HTMLInputElement>document.getElementsByClassName('itemImage')[0]).src,
 //         itemNames: (<HTMLInputElement>document.getElementsByClassName("name")[0]).value,
 //         itemPrices: parseFloat( (<HTMLInputElement>document.getElementsByClassName('price')[0]).value),
 //      }
-// // for(let i = 0; i < itemNames.length; i++) {
+// // for(var i = 0; i < itemNames.length; i++) {
 // //     itemsobj.push(itemNames[i].value);
 // // }
 //         itemsobj.push(obj);
@@ -38,11 +39,13 @@ function displayData() {
     }
     for (var i = 0; i < itemsobj.length; i++) {
         var r = tbl.insertRow();
+        var cell1 = r.insertCell();
         var cell2 = r.insertCell();
         var cell3 = r.insertCell();
-        //images.src= objects[i].image;
-        //  const images = document.createElement('img') as HTMLImageElement;
-        // images.src= itemsobj[i].itemImages;
+        var img = document.createElement('img');
+        img.className = "img img-fluid cart-images";
+        img.src = itemsobj[i].itemImages;
+        cell1.appendChild(img);
         cell2.innerHTML = itemsobj[i].itemNames;
         cell3.innerHTML = "$" + itemsobj[i].itemPrices;
     }
@@ -53,21 +56,33 @@ function displayData() {
 }
 var totalBudget = 0;
 function calcTotalPrice() {
-    totalBudget = itemsobj.reduce(function (a, b) { return +a + +b.itemPrices; }, 0);
+    totalBudget = itemsobj.reduce((a, b) => +a + +b.itemPrices, 0);
 }
-var count = [];
-function displaycount() {
-    var table = document.getElementById('itemsInCart');
-    console.log(table);
-    for (var i = 0; i < itemsobj.length; i++) {
-        function cartitems() {
-            count = itemsobj.length;
-            return count;
-        }
-        table.append(cartitems());
-    }
-}
+// var count:any = []; 
+// function displaycount(){
+//     var table = document.getElementById('itemsInCart') as HTMLTableElement;
+//     console.log(table);
+//     for (var i = 0; i < itemsobj.length; i++) {
+//              count = itemsobj.length ;
+// }
+// return count;
+// }
+// var addCart = document.getElementsByClassName('add-to-cart-button') ;
+// console.log(addCart);
+// for (var i = 0; i < addCart.length; i++) {
+//     var button = addCart[i];
+//     button.addEventListener('click', () => {
+// cartCount();
+//     })
+// }
+// function cartCount(){
+// //var prdCount = localStorage.getItem('proObj');
+// var prdCount = itemsobj.length;
+// // prdCount = parseInt(prdCount);
+// console.log("count is " + prdCount);
+// }
 function ready() {
+    //cartCount();
     var addToCartButton = document.getElementsByClassName('add-to-cart-button');
     for (var i = 0; i < addToCartButton.length; i++) {
         var button = addToCartButton[i];
@@ -79,20 +94,14 @@ function addToCartClicked(event) {
     var button = event.target;
     var shopItem = button.parentElement.parentElement;
     var obj = {
-        //  itemImages: (<HTMLInputElement>document.getElementsByName("itemImage")).src,
         itemImages: shopItem.getElementsByClassName('itemImage')[0].src,
         itemNames: shopItem.getElementsByClassName('name')[0].value,
-        itemPrices: parseFloat(shopItem.getElementsByClassName('price')[0].value)
+        itemPrices: parseFloat(shopItem.getElementsByClassName('price')[0].value),
     };
     itemsobj.push(obj);
-    // itemsobj.push(obj);
     localStorage.setItem("proObj", JSON.stringify(itemsobj));
     console.log(itemsobj);
     console.log("Data stored in local storage");
-    // var image = shopItem.getElementsByClassName('itemImage')[0].src as HTMLInputElement;
-    // var name = shopItem.getElementsByClassName('name')[0].value as HTMLInputElement;
-    // var price = shopItem.getElementsByClassName('price')[0].value as HTMLInputElement;
-    //displayData(itemImages,itmeNames,itemPrices);
 }
 // function clearBox()
 // {

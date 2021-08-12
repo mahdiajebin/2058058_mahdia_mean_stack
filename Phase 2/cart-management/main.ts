@@ -6,10 +6,10 @@ if(document.readyState =='loading'){
 }
 
 
-let itemsobj: Product[]=[]; 
+var itemsobj: Product[]=[]; 
 
 interface Product {
-    itemImages: String;
+    itemImages: string;
     itemNames: string;
     itemPrices: number;
 }
@@ -22,7 +22,7 @@ interface Product {
 
 //  // var diva = document.getElementsByClassName('thecard')[0];
 
-//     let obj: Product= {
+//     var obj: Product= {
 //         //  itemImages: (<HTMLInputElement>document.getElementsByName("itemImage")).src,
 //         itemImages:(<HTMLInputElement>document.getElementsByClassName('itemImage')[0]).src,
 //         itemNames: (<HTMLInputElement>document.getElementsByClassName("name")[0]).value,
@@ -31,7 +31,7 @@ interface Product {
 //      }
 
 
-// // for(let i = 0; i < itemNames.length; i++) {
+// // for(var i = 0; i < itemNames.length; i++) {
 // //     itemsobj.push(itemNames[i].value);
 // // }
 
@@ -50,7 +50,7 @@ interface Product {
 
   function getData() {
 
-    let retrivedData = localStorage.getItem("proObj");
+    var retrivedData = localStorage.getItem("proObj");
     if(retrivedData != null)
     itemsobj = JSON.parse(retrivedData);
 
@@ -75,17 +75,19 @@ while(--x){
 
 
 
- for (let i = 0; i < itemsobj.length; i++) {
+ for (var i = 0; i < itemsobj.length; i++) {
     
      var r = tbl.insertRow();
+     var cell1 = r.insertCell();
      var cell2= r.insertCell();
      var cell3= r.insertCell();
 
-     //images.src= objects[i].image;
-    //  const images = document.createElement('img') as HTMLImageElement;
-     // images.src= itemsobj[i].itemImages;
 
-
+    var img = document.createElement('img');
+    img.className = "img img-fluid cart-images";
+    img.src =  itemsobj[i].itemImages;
+    cell1.appendChild(img);
+ 
      cell2.innerHTML = itemsobj[i].itemNames;
      cell3.innerHTML = "$"+ itemsobj[i].itemPrices;
 
@@ -94,14 +96,14 @@ while(--x){
  
  calcTotalPrice();
 
- let totatBudget2 = "Total Budget is : $" +totalBudget ;
+ var totatBudget2 = "Total Budget is : $" +totalBudget ;
  var r2 =tbl.insertRow();
  r2.innerHTML = totatBudget2 ;
  
 }
 
 
-let totalBudget=0;
+var totalBudget=0;
 
 function calcTotalPrice(){
 
@@ -111,35 +113,59 @@ totalBudget = itemsobj.reduce((a,b)=> + a + +b.itemPrices,0);
  
 
 
-let count:any = []; 
+// var count:any = []; 
 
-function displaycount(){
+// function displaycount(){
 
 
-
-    const table =(<HTMLTableElement>document.getElementById('itemsInCart'));
-    console.log(table);
+//     var table = document.getElementById('itemsInCart') as HTMLTableElement;
+//     console.log(table);
     
 
-    for (let i = 0; i < itemsobj.length; i++) {
-    function cartitems(){
-        
-             count = itemsobj.length ;
-             return count;
+//     for (var i = 0; i < itemsobj.length; i++) {
+   
+//              count = itemsobj.length ;
+           
 
- }
- table.append(cartitems())
-}
+// }
         
 
+// return count;
+
+// }
+
+// var addCart = document.getElementsByClassName('add-to-cart-button') ;
+// console.log(addCart);
+// for (var i = 0; i < addCart.length; i++) {
+//     var button = addCart[i];
+//     button.addEventListener('click', () => {
+
+// cartCount();
+
+//     })
+    
+// }
 
 
-}
+// function cartCount(){
+// //var prdCount = localStorage.getItem('proObj');
+// var prdCount = itemsobj.length;
+
+// // prdCount = parseInt(prdCount);
+
+// console.log("count is " + prdCount);
+
+
+
+
+// }
+
+
 
 function ready(){
-
-let addToCartButton = document.getElementsByClassName('add-to-cart-button') ;
-for (let i = 0; i < addToCartButton.length; i++) {
+//cartCount();
+var addToCartButton = document.getElementsByClassName('add-to-cart-button') ;
+for (var i = 0; i < addToCartButton.length; i++) {
     var button =addToCartButton[i];
     button.addEventListener('click',addToCartClicked);
     
@@ -149,14 +175,13 @@ for (let i = 0; i < addToCartButton.length; i++) {
 
 }
 
-function addToCartClicked(event){
+function addToCartClicked(event: { target: any; }){
 
-    getData();
+   getData();
 var button = event.target
 var shopItem = button.parentElement.parentElement
 
-let obj: Product= {
-    //  itemImages: (<HTMLInputElement>document.getElementsByName("itemImage")).src,
+var obj: Product= {
     itemImages:(<HTMLInputElement>shopItem.getElementsByClassName('itemImage')[0]).src,
     itemNames: (<HTMLInputElement>shopItem.getElementsByClassName('name')[0]).value,
     itemPrices: parseFloat( (<HTMLInputElement> shopItem.getElementsByClassName('price')[0]).value),
@@ -165,19 +190,13 @@ let obj: Product= {
 
  itemsobj.push(obj);
 
-    // itemsobj.push(obj);
+
     
     localStorage.setItem("proObj", JSON.stringify(itemsobj)) ;
     console.log(itemsobj);
 
    console.log("Data stored in local storage");
 
-
-// var image = shopItem.getElementsByClassName('itemImage')[0].src as HTMLInputElement;
-
-// var name = shopItem.getElementsByClassName('name')[0].value as HTMLInputElement;
-// var price = shopItem.getElementsByClassName('price')[0].value as HTMLInputElement;
-//displayData(itemImages,itmeNames,itemPrices);
 
 
 
