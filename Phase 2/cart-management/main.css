@@ -1,0 +1,98 @@
+.inputPadding{
+    padding-left: 40px;
+}
+/* .textarea-width{
+width: ;
+} */
+
+.form-div-width{
+    width: 75%;
+   
+}
+.cardm{
+  /* padding: 2px 16px; */
+    margin: 40px;
+    text-decoration: blue;
+}
+
+.table {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    text-decoration: blue;
+    width: 40%;
+    height: 200px;
+    padding: 2px 16px;
+  }
+  
+  .table:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+ 
+  .body2{
+    background-color: #d5cece;
+  }
+
+  .text-over{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* number of lines to show for paragraph text  */
+    -webkit-box-orient: vertical;
+
+  }
+  .myImage{
+      margin-top: 10px;
+    border: 0px solid rgba(0, 0, 0, 0.905);
+    /* box-shadow: 0 4px 8px 0 rgb(237, 194, 53); */
+
+      width: 280px;
+      height: 340px;
+  }
+  .title-over{
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* number of lines to show  for title text */
+    -webkit-box-orient: vertical;
+  }
+
+
+  .fa-stack{
+
+    border-radius: 100%;
+    right:0%;
+    top:0%;
+    /* content: attr(data-count); */
+    font-size:60%;
+    padding:.4em;
+    /* border-radius:999666669px; */
+    line-height:.75em;
+    color: rgb(19, 3, 3);
+    text-align:center;
+    min-width:2em;
+    font-weight:bold;
+    background: white;
+    border-style:solid;
+    display: inline-block;
+  }
+
+  table, th, td {
+    border: 0px solid black;
+  }
+  .counter{
+      float:right ;
+    /* font-size: 16px; */
+  text-align:right;
+  /* padding: 0 5px; */
+/* text-align: top; */
+  }
+  .cart{
+    padding-bottom: 2px;
+    text-align:top;
+    vertical-align: top;
+ 
+  }
+  input {
+    border: 0;
+    
+}
