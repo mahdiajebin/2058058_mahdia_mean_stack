@@ -6,25 +6,6 @@ else {
     ready();
 }
 var itemsobj = [];
-// function storeData(image,name,price) {
-//    // clearBox();
-//   //getData();
-//  // var diva = document.getElementsByClassName('thecard')[0];
-//     var obj: Product= {
-//         //  itemImages: (<HTMLInputElement>document.getElementsByName("itemImage")).src,
-//         itemImages:(<HTMLInputElement>document.getElementsByClassName('itemImage')[0]).src,
-//         itemNames: (<HTMLInputElement>document.getElementsByClassName("name")[0]).value,
-//         itemPrices: parseFloat( (<HTMLInputElement>document.getElementsByClassName('price')[0]).value),
-//      }
-// // for(var i = 0; i < itemNames.length; i++) {
-// //     itemsobj.push(itemNames[i].value);
-// // }
-//         itemsobj.push(obj);
-//     // itemsobj.push(obj);
-//     localStorage.setItem("proObj", JSON.stringify(itemsobj)) ;
-//     console.log(itemsobj);
-//    console.log("Data stored in local storage");
-//   }
 function getData() {
     var retrivedData = localStorage.getItem("proObj");
     if (retrivedData != null)
@@ -32,6 +13,9 @@ function getData() {
 }
 function displayData() {
     getData();
+    var clearCartButton = document.getElementById("clear-cart");
+    if (clearCartButton)
+        clearCartButton.addEventListener("click", clearCart);
     var tbl = document.getElementById("myTable");
     var x = tbl.rows.length;
     while (--x) {
@@ -50,7 +34,7 @@ function displayData() {
         cell3.innerHTML = "$" + itemsobj[i].itemPrices;
     }
     calcTotalPrice();
-    var totatBudget2 = "Total Budget is : $" + totalBudget;
+    var totatBudget2 = "Total amount : $" + totalBudget;
     var r2 = tbl.insertRow();
     r2.innerHTML = totatBudget2;
 }
@@ -82,7 +66,10 @@ function calcTotalPrice() {
 // console.log("count is " + prdCount);
 // }
 function ready() {
-    //cartCount();
+    getData();
+    const cart = document.getElementById('itemsInCart');
+    if (cart)
+        cart.innerHTML = `${itemsobj.length}`;
     var addToCartButton = document.getElementsByClassName('add-to-cart-button');
     for (var i = 0; i < addToCartButton.length; i++) {
         var button = addToCartButton[i];
@@ -90,7 +77,6 @@ function ready() {
     }
 }
 function addToCartClicked(event) {
-    getData();
     var button = event.target;
     var shopItem = button.parentElement.parentElement;
     var obj = {
@@ -99,9 +85,23 @@ function addToCartClicked(event) {
         itemPrices: parseFloat(shopItem.getElementsByClassName('price')[0].value),
     };
     itemsobj.push(obj);
+    const cart = document.getElementById('itemsInCart');
+    if (cart)
+        cart.innerHTML = `${itemsobj.length}`;
     localStorage.setItem("proObj", JSON.stringify(itemsobj));
     console.log(itemsobj);
     console.log("Data stored in local storage");
+}
+function clearCart() {
+    localStorage.removeItem("proObj");
+    var tbl = document.getElementById("myTable");
+    if (tbl) {
+        while (tbl.firstChild) {
+            if (tbl.lastChild)
+                tbl.removeChild(tbl.lastChild);
+        }
+    }
+    displayData();
 }
 // function clearBox()
 // {

@@ -16,36 +16,6 @@ interface Product {
 
 
 
-// function storeData(image,name,price) {
-//    // clearBox();
-//   //getData();
-
-//  // var diva = document.getElementsByClassName('thecard')[0];
-
-//     var obj: Product= {
-//         //  itemImages: (<HTMLInputElement>document.getElementsByName("itemImage")).src,
-//         itemImages:(<HTMLInputElement>document.getElementsByClassName('itemImage')[0]).src,
-//         itemNames: (<HTMLInputElement>document.getElementsByClassName("name")[0]).value,
-//         itemPrices: parseFloat( (<HTMLInputElement>document.getElementsByClassName('price')[0]).value),
-      
-//      }
-
-
-// // for(var i = 0; i < itemNames.length; i++) {
-// //     itemsobj.push(itemNames[i].value);
-// // }
-
-     
-//         itemsobj.push(obj);
-
-//     // itemsobj.push(obj);
-    
-//     localStorage.setItem("proObj", JSON.stringify(itemsobj)) ;
-//     console.log(itemsobj);
-
-//    console.log("Data stored in local storage");
-
-//   }
 
 
   function getData() {
@@ -61,7 +31,8 @@ interface Product {
 
   function displayData(){
     getData();
-
+    var clearCartButton = document.getElementById("clear-cart")
+    if(clearCartButton) clearCartButton.addEventListener("click", clearCart);
 
 var tbl = document.getElementById("myTable") as HTMLTableElement;
 
@@ -96,7 +67,7 @@ while(--x){
  
  calcTotalPrice();
 
- var totatBudget2 = "Total Budget is : $" +totalBudget ;
+ var totatBudget2 = "Total amount : $" +totalBudget ;
  var r2 =tbl.insertRow();
  r2.innerHTML = totatBudget2 ;
  
@@ -134,6 +105,7 @@ totalBudget = itemsobj.reduce((a,b)=> + a + +b.itemPrices,0);
 
 // }
 
+
 // var addCart = document.getElementsByClassName('add-to-cart-button') ;
 // console.log(addCart);
 // for (var i = 0; i < addCart.length; i++) {
@@ -145,6 +117,8 @@ totalBudget = itemsobj.reduce((a,b)=> + a + +b.itemPrices,0);
 //     })
     
 // }
+
+
 
 
 // function cartCount(){
@@ -163,12 +137,14 @@ totalBudget = itemsobj.reduce((a,b)=> + a + +b.itemPrices,0);
 
 
 function ready(){
-//cartCount();
+getData();
+const cart = document.getElementById('itemsInCart');
+if(cart) cart.innerHTML = `${itemsobj.length}`
+
 var addToCartButton = document.getElementsByClassName('add-to-cart-button') ;
 for (var i = 0; i < addToCartButton.length; i++) {
     var button =addToCartButton[i];
     button.addEventListener('click',addToCartClicked);
-    
 }
 
 
@@ -176,8 +152,6 @@ for (var i = 0; i < addToCartButton.length; i++) {
 }
 
 function addToCartClicked(event: { target: any; }){
-
-   getData();
 var button = event.target
 var shopItem = button.parentElement.parentElement
 
@@ -185,11 +159,11 @@ var obj: Product= {
     itemImages:(<HTMLInputElement>shopItem.getElementsByClassName('itemImage')[0]).src,
     itemNames: (<HTMLInputElement>shopItem.getElementsByClassName('name')[0]).value,
     itemPrices: parseFloat( (<HTMLInputElement> shopItem.getElementsByClassName('price')[0]).value),
-  
  }
 
  itemsobj.push(obj);
-
+ const cart = document.getElementById('itemsInCart');
+if(cart) cart.innerHTML = `${itemsobj.length}`
 
     
     localStorage.setItem("proObj", JSON.stringify(itemsobj)) ;
@@ -200,6 +174,17 @@ var obj: Product= {
 
 
 
+ }
+
+ function clearCart(){
+    localStorage.removeItem("proObj");
+    var tbl = document.getElementById("myTable");
+    if(tbl){
+        while(tbl.firstChild){
+            if(tbl.lastChild) tbl.removeChild(tbl.lastChild)
+        }
+    }
+    displayData();
  }
 
 // function clearBox()
