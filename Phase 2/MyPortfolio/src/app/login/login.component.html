@@ -1,0 +1,21 @@
+<br/>
+<div   class="container  ">
+    <form    class="form-control" [formGroup]="loginRef"  (ngSubmit)="onSubmit()" >
+    <h1 class="text-center"> Login </h1>
+        <label>Username</label> <br>
+        <input type="text" formControlName="user" class="form-control" #userRef/> <br/>
+        <label > password</label> <br>
+        <input type="password" formControlName="pass" class="form-control" #passRef /> 
+        <br><br>
+        <input  class="btn btn-primary m-4" type="submit" value="submit" [disabled]="!loginRef.valid"/>
+        <input class="btn btn-danger"  type="reset" value="Reset"/> 
+
+        <div class=" d-flex ">
+            <input class="btn btn-warning "  type="reset" value=" go to Sign Up"/><br>
+        </div>
+
+    
+    </form>
+</div>
+
+
