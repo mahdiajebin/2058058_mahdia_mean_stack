@@ -1,6 +1,6 @@
 <br/>
 <div   class="container  ">
-    <form    class="form-control" [formGroup]="loginRef"  (ngSubmit)="onSubmit()" >
+    <form    class="form-control" [formGroup]="loginRef"  (ngSubmit)="onSubmit(loginRef.value)" >
     <h1 class="text-center"> Login </h1>
         <label>Username</label> <br>
         <input type="text" formControlName="user" class="form-control" #userRef/> <br/>

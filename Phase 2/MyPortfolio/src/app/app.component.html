@@ -1,6 +1,12 @@
 <div>
-  <app-registration></app-registration>
-  <br/>
-  <app-login></app-login>
-  <app-portfolio></app-portfolio>
+  <app-registration 
+  *ngIf="registerForm"></app-registration>
+
+
+  <app-login *ngIf="loginForm"></app-login>
+
+
+  <app-portfolio 
+  ></app-portfolio>
+  
 </div>

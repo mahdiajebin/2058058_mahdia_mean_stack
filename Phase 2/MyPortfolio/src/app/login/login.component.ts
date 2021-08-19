@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 
 import { AccountService } from '../account.service';
@@ -10,7 +10,7 @@ import { User } from '../user.model';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+ //@Input() public handleChangeFrom: (type: any)=> void
 
   loginRef = new FormGroup({
     user:new FormControl("",[Validators.required]),
@@ -24,12 +24,24 @@ export class LoginComponent implements OnInit {
   constructor(public accSer:AccountService) { }
 
   ngOnInit(): void {
+
   }
 
 
-  onSubmit(){
-    console.log("calling on suvmit")
+  onSubmit(value:any){
+    console.log("calling on suvmit",value)
+   const data = this.accSer.getData();
+   if(!data)  return;
+   if(data.user.user === value.user && data.user.pass=== value.pass){
+    alert("login success go to portfolio")
+    data.callback(data.user)
+   }
+
+
   }
+  // callService(){
+  //   this.accSer.test()
+  // }
   // checkUser(userRef:any, passRef:any){
     
   //   let userz = userRef.value;
@@ -80,16 +92,15 @@ export class LoginComponent implements OnInit {
 
 // checkUser2(userRef:any, passRef:any){
 //   let arrayU = this.accSer.userArray;
-// let flag =0;
+//   let flag =0;
 
-// for (let index = 0; index < arrayU.length; index++) {
 
 //   if(arrayU.values ==userRef && arrayU.values ==passRef){
 //     flag++;
 
 //      }
   
-// }
+
 //    if(flag>0){
 //       console.log("sucess")
 //             }else {

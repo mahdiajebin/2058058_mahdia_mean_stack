@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component,OnInit} from '@angular/core';
+import { AccountService } from './account.service';
 
 @Component({
   selector: 'app-root',
@@ -7,27 +8,35 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'MyPortfolio';
+  public form = "login";
+
+  public handleChangeFrom = (type:any) => {
+    this.form = type
+  }
+
+  registerForm :boolean = true;
+  loginForm: boolean = true;
+  togglePortfolio:boolean = false;
+
+
+
+ constructor(public ser:AccountService){
+
+ }
+
+  // onSubmit(): void {
+  //   this.ser.onToggle()
+  // }
+
 
 
 
   // regisBclicked:boolean = true;
   // loginform:boolean=false;
 
-
-  // toggleregistrationsubmit(){
-  //   if(this.regisBclicked){
-  //     this.regisBclicked=false;
-  //      this.loginform=true;
-  //   }else{
-  //     this.regisBclicked=true;
-  //     this.loginform=false;
-    
-  //   }
-  //   console.log("toggle reg clicked")
-  // }
-
-
 }
+
+
 
 
 

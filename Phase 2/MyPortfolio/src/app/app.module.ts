@@ -7,6 +7,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import {  FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { AccountService } from './account.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { AccountService } from './account.service';
     PortfolioComponent
   ],
   imports: [
-    BrowserModule,ReactiveFormsModule,FormsModule
+    BrowserModule,ReactiveFormsModule,FormsModule,HttpClientModule
   ],
   providers: [AccountService],
   bootstrap: [AppComponent]

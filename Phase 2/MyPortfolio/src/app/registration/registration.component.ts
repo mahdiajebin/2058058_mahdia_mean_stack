@@ -39,6 +39,7 @@ userArray:Array<User> = new Array();
   onSubmit() {
   
  console.log("on submit was called");
+ alert("sign up success go to login")
 
   }
 
