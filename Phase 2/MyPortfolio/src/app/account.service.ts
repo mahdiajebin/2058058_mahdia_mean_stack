@@ -15,6 +15,14 @@ export class AccountService {
   userArray: Array<User> = new Array();
   portfolioArray: Array<PortfolioModel> = new Array();
 
+
+
+
+
+
+
+
+  
   constructor(public http: HttpClient) {
 
   }
