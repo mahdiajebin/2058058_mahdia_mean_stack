@@ -1,0 +1,38 @@
+[
+    {
+   "question":"whats the first letter of z",
+   answer:[
+     {option:'v',correct:false},
+     {option:'a', correct:true},
+     {option:'c', correct:false},
+     {option:'e', correct:false}
+   ]
+ },
+ {
+   question:'whats the first letter of act',
+   answer:[
+     {option:'v',correct:false},
+     {option:'a', correct:true},
+     {option:'c', correct:false},
+     {option:'e', correct:false}
+   ]
+ },
+ {
+   question:'whats the first letter of g',
+   answer:[
+     {option:'v',correct:false},
+     {option:'a', correct:true},
+     {option:'c', correct:false},
+     {option:'e', correct:false}
+   ]
+ },
+ {
+   question:'whats the first letter of f',
+   answer:[
+     {option:'v',correct:false},
+     {option:'a', correct:true},
+     {option:'c', correct:false},
+     {option:'e', correct:false}
+   ]
+ }
+ ]
