@@ -25,6 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TaskService } from './task.service';
 import { CdkColumnDef } from '@angular/cdk/table';
 import {CdkTableModule} from '@angular/cdk/table';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,13 @@ import {CdkTableModule} from '@angular/cdk/table';
    
     MatIconModule,
     ReactiveFormsModule,
-    CdkTableModule
+    CdkTableModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [TaskService,CdkColumnDef],
   bootstrap: [AppComponent]

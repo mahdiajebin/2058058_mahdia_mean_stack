@@ -1,6 +1,6 @@
 <div class="container ">
 
-    <div class="row ">
+    <div class="row">
 
 
         <div class="col order-first mt-5 ">
@@ -57,152 +57,61 @@
 
 
         </div>
-        <!-- bsDatepicker
-                         [(bsValue)] = "dateToAdd" 
-                         value = "{{dateToAdd | date:'mm/dd/yyyy'}}" -->
-        <!-- <div class="col order-last m-5 ">
+
+        <div class="col order-last m-5 ">
             <h2> To-Do List</h2>
-            
-                <table class="table table table-dark table-striped " border="1">
-                        <thead>
-                        <tr class="table-primary"  scope="row">
 
-                                <th mat-header scope="col" > ID </th>
-                                <th mat-header scope="col" > Name </th>
-                                <th mat-header scope="col" > Task</th>
-                                
-                              <th mat-header > Deadline </th>
-                    </tr>
-                </thead>
-                  <thead>
-                    <tr *ngFor="let task of TaskArray" class="table-primary"  scope="row">
+            <div>
+                <table mat-table [dataSource]="TaskArray" class="mat-elevation-z8   " >
 
-                       
-                        <td  > {{task.idToAdd}} </td>
-                    
-
-                 
-
-                        <td  > {{task.nameToAdd}} </td>
-                    
-
-             
-         
-               
-                        <td > {{task.taskToAdd}} </td>
-                   
-
-         
-                        <td  > {{task.dateToAdd}} </td>
-                   
-                    </tr>
-                </thead>
-                </table>
-
-
-            </div>
-        
-    </div> -->
-
-
-
-        <!-- 
-        <div>
-            <table mat-table [dataSource]="TaskArray" class="mat-elevation-z8"> -->
-        <!-- Note that these columns can be defined in any order. -->
-        <!-- The actual rendered columns are set as a property on the row definition" --> -->
-
-        <!-- Position Column -->
-        <!-- <ng-container matColumnDef="idToAdd">
-                    <th mat-header-cell *matHeaderCellDef> ID </th>
-                    <td mat-cell *matCellDef="let element "> {{element.idToAdd}} </td>
-                </ng-container> -->
-
-        <!-- Name Column -->
-        <!-- <ng-container matColumnDef="nameToAdd">
-                    <th mat-header-cell *matHeaderCellDef> Name </th>
-                    <td mat-cell *matCellDef="let element  "> {{element.nameToAdd}} </td>
-                </ng-container> -->
-
-        <!-- Weight Column -->
-        <!-- <ng-container matColumnDef="taskToAdd">
-                    <th mat-header-cell *matHeaderCellDef>TASk </th>
-                    <td mat-cell *matCellDef="let element  "> {{element.taskToAdd}} </td> 
-                </ng-container> -->
-
-        <!-- Symbol Column -->
-        <!-- <ng-container matColumnDef="dateToAdd ">
-                    <th mat-header-cell *matHeaderCellDef> Date </th>
-                    <td mat-cell *matCellDef="let element "> {{element.dateToAdd}} </td> 
-                </ng-container>
-
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
-            
-        </div> -->
-
-
-
-
-        <div>
-            <table mat-table [dataSource]="TaskArray" class="mat-elevation-z8">
-
-                <!--- Note that these columns can be defined in any order.
+                    <!-- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
 
-                <!-- Position Column -->
-                <ng-container matColumnDef="idToAdd">
-                    <th mat-header-cell *matHeaderCellDef> ID </th>
-                    <td mat-cell *matCellDef="let element"> {{element.idToAdd}} </td>
-                </ng-container>
+                    <!-- ID Column -->
+                    <ng-container matColumnDef="idToAdd">
+                        <th mat-header-cell *matHeaderCellDef> ID </th>
+                        <td mat-cell *matCellDef="let element"> {{element.idToAdd}} </td>
+                    </ng-container>
 
-                <!-- Name Column -->
-                <ng-container matColumnDef="nameToAdd">
-                    <th mat-header-cell *matHeaderCellDef> Name </th>
-                    <td mat-cell *matCellDef="let element"> {{element.nameToAdd}} </td>
-                </ng-container>
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="nameToAdd">
+                        <th mat-header-cell *matHeaderCellDef> Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.nameToAdd}} </td>
+                    </ng-container>
 
-                <!-- Weight Column -->
-                <ng-container matColumnDef="taskToAdd">
-                    <th mat-header-cell *matHeaderCellDef> Task</th>
-                    <td mat-cell *matCellDef="let element"> {{element.taskToAdd}} </td>
-                </ng-container>
+                    <!-- Task Column -->
+                    <ng-container matColumnDef="taskToAdd">
+                        <th mat-header-cell *matHeaderCellDef> Task</th>
+                        <td mat-cell *matCellDef="let element"> {{element.taskToAdd}} </td>
+                    </ng-container>
 
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="dateToAdd">
-                    <th mat-header-cell *matHeaderCellDef> Deadline </th>
-                    <td mat-cell *matCellDef="let element"> {{element.dateToAdd}} </td>
-                </ng-container>
+                    <!-- Deadline Column -->
+                    <ng-container matColumnDef="dateToAdd" >
+                        <th mat-header-cell  *matHeaderCellDef> Deadline </th>
+                        <td mat-cell  *matCellDef="let element"> {{element.dateToAdd}} </td>
+                    </ng-container>
 
-                <!-- Position Column -->
-                <ng-container matColumnDef="resetId">
-                    <th mat-header-cell *matHeaderCellDef> Remove </th>
+                    <!-- Reset Column -->
+                    <ng-container matColumnDef="resetId">
+                        <th mat-header-cell *matHeaderCellDef> </th>
 
-                    <td mat-cell *matCellDef="let element">
-                        <button mat-raised-button color="warn" type="reset" (click)="removeTask(element.resetId)">Remove</button>
-                    </td>
-                </ng-container>
+                        <td mat-cell *matCellDef="let element">
+                            <button mat-raised-button color="warn" type="reset"
+                                (click)="removeTask(element.resetId)">Remove</button>
+                        </td>
+                    </ng-container>
 
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"  ></tr>
+                </table>
+            </div>
+
+
+
         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </div>
+
+
+
+</div>
