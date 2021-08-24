@@ -27,6 +27,7 @@ import { CdkColumnDef } from '@angular/cdk/table';
 import {CdkTableModule} from '@angular/cdk/table';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,7 @@ import { environment } from '../environments/environment';
     MatDividerModule,
     A11yModule,
     ClipboardModule,
-   
+    MatGridListModule,
     MatIconModule,
     ReactiveFormsModule,
     CdkTableModule,

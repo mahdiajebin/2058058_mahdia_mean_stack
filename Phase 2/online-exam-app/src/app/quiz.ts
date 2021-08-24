@@ -1,7 +1,10 @@
-export class Quiz {
-    question:string | undefined 
-    answer: {
-        option: string;
-        correct: boolean;
-    }[] | undefined 
+export interface IAnswer{
+    option: string
+    correct: boolean
+}
+
+
+export interface Quiz {
+    question: string
+    answer: IAnswer[]
 }
