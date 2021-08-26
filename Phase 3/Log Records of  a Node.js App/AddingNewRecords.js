@@ -3,7 +3,7 @@ let fs = require("fs");
 
 let UserRecords = JSON.parse(fs.readFileSync("UserRecords.json").toString());
 
-
+debugger;
 // employess.push(emp4);
 // let employeeString = JSON.stringify(employess);
 
@@ -26,7 +26,7 @@ let age = readline.question("Enter your age: ");
 
 
 
-
+debugger;
 
 
 
@@ -58,12 +58,16 @@ let seconds = date_ob.getSeconds();
 let currentDate = (year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds);
 console.log(currentDate);
 
+debugger;
 
 let empNew = { id: id, name: name, age: age, currentDate };
 UserRecords.push(empNew);
 //let empString = JSON.stringify(emp4); //converting object to string 
 
+debugger;
 
 fs.writeFileSync("UserRecords.json", JSON.stringify(UserRecords))
+debugger;
+
 
 console.log("new data stored");
