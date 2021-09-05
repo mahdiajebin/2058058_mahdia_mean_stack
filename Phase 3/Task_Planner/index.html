@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Task Page</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='index.js'></script>
+</head>
+
+<body>
+
+    <h2> Task Planner </h2>
+    <form action="addTask">
+        <label> Emp ID</label>
+        <input type="number" name="empId" required /> <br><br>
+        <label> Task ID</label>
+        <input type="number" name="taskId" required /> <br><br>
+        <label> Task </label>
+        <input type="text" name="task" required /> <br><br>
+        <label> Deadline </label>
+        <input type="date" name="deadline" required /> <br><br>
+
+        <input type="submit" name="submit" /> <br /><br>
+        <input type="reset" name="reset" /><br><br>
+
+    </form>
+
+    <form action="deleteTask">
+        <label> Task ID to delete </label>
+        <input type="number" name="taskId" required /> <br><br>
+        <input type="submit" name="submit" /> <br /><br>
+    </form>
+
+
+    <h2> Task List Table </h2>
+
+    <input type="button" onclick="fetchAllTasks()" />
+
+    <p id='showData'></p>
+
+</body>
+
+</html>
