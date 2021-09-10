@@ -7,81 +7,99 @@
     <title>Index</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
-    <script src="main.js"></script>
+
     <!-- default path -->
     <!-- connectiong library path part of node module folder  -->
+
     <script src="/socket.io/socket.io.js">  </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <script type="text/JavaScript">
 
-//connecting client to server side
-// let ENDPOINT = "http://localhost:9090"
-// let socket = io.connect(ENDPOINT);
+</head>
+
+<body>
+
+    <h2> Chat Box</h2>
+    <div id="message-container" class="container">
+
+    </div>
+
+    <div class="container m-4">
+        <input type="text" id="message-input" placeholder="Enter your name" />
+        <button type="submit" id="submit-button">connect</button>
+
+    </div>
+
+</body>
+
+<script>
+
+    var messageContainer = document.getElementById('message-container');
+    var submitButton = document.getElementById('submit-button');
+    var messageInput = document.getElementById('message-input');
+
+    console.log(submitButton);
+
+    var server, username;
+    console.log(username)
+    console.log(server)
+    function connectToSocket() {
+        //client
+        server = io();
 
 
-    //client
-     var socket = io();
+        console.log("server connected");
 
-    //  io.on("connection", (socket)=> {
-    console.log("server connected");
-    //recieve the messge from server application
-    socket.on("obj1", (msg)=>{
-        console.log(msg.data);
+        messageInput.setAttribute("placeholder", "Enter your Message")
+        submitButton.innerText = "Send";
+
+        server.emit('client-name', username)
         
 
+        //recieve the messge from server application
+        //listning
+        server.on("server-message", (data) => {
+            //data printign from server side
+            appendMessage(data);
+        })
+
+        server.on("server-error", (data) => {
+            alert(data)
+        })
+        function appendMessage(message) {
+            const messageElement = document.createElement('div');
+            messageElement.innerText = message;
+            messageContainer.append(messageElement)
+        }
+    }
+
+
+    submitButton.addEventListener('click', e => {
+        e.preventDefault();
+        const message = messageInput.value;
+        console.log(username)
+        console.log(server)
+
+        if (!username && !server) {
+            username = message;
+            connectToSocket();
+
+        } else {
+            //  sending message to server
+            server.emit('send-chat-Message', message)
+        }
+        messageInput.value = '';
     })
 
 
 
 
-    //sending data to server
-    socket.emit("obj", "Hello Server I am web socket client");
-// } )
-  
-     
-
-info = () =>{
-      let msg = document.getElementById("dd").value
-       socket.emit(msg);
-       document.getElementById("dd").value="";
-       console.log(msg)
-}
-
-
-
-//
-
-    </script>
-</head>
-
-<body>
-    <div class="container-fluid m-4">
-        <div class="row">
-            <div class="col-md-6 col-sm-6">
-
-                <h2> Socket.io programming </h2>
-
-
-                Messages: <input type="text" id="dd" class="form-label" /> </br>
-
-                <input type="button" value="send data " onClick="info()" />
-
-            </div>
-            <div class="col-md-6 col-sm-6">
-                <h4> Chatting history </h4>
-                <p> </p>
-            </div>
-        </div>
-    </div>
 
 
 
 
-
-
-
-</body>
+</script>
 
 </html>

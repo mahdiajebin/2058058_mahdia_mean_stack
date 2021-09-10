@@ -9,7 +9,7 @@ let app = express();
 //load the http module and connect to express module with server property
 let http = require("http").Server(app);
 
-//load the socket IO module and connect http module with IIFE features 
+//load the client IO module and connect http module with IIFE features 
 let io = require('socket.io')(http);
 
 app.get("/", (req, res) => {
@@ -17,21 +17,55 @@ app.get("/", (req, res) => {
 })
 
 
-io.on("connection", (socket) => {
+io.on("connection", (client) => {
     console.log("client connected");
-    //recieve the messge from cleint application
-    socket.on("chat message", (msg) => {
-        //  console.log(msg);
+    let name = " "
+    const messageArray = ["hello there", "Welcome", "good to see you "];
 
-        io.emit('chat message', msg);
+
+    const responses = {
+        "hello": "How can I help?",
+    }
+
+    client.on('client-name', uname => {
+        name = uname;
+        console.log(uname);
+        const random = Math.floor(Math.random() * messageArray.length);
+
+        //new
+        client.emit('server-message', "Server says: " + messageArray[random] + " " + uname);
+
     })
-   
 
-    //sending data to client
-    socket.emit("obj1", "hello user client connected server...");
+
+    //recive message from client 
+    client.on('send-chat-Message', msg => {
+        //data from client 
+        console.log(msg)
+        //checking if input is string 
+        if (typeof msg === "string") {
+            client.emit('server-message', name + " says: " + msg);
+            const response = responses[msg.toLowerCase()]
+
+            if (!response) {
+                client.emit('server-message', "Server says: I dont understand ")
+
+            } else {
+                client.emit('server-message', "Server says: " + response);
+            }
+        } else {
+
+            client.emit('server-error', "input must be a string ");
+
+
+        }
+
+
+
+    })
+
+
 })
-
-
 
 
 
