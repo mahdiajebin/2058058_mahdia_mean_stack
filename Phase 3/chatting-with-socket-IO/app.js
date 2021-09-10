@@ -20,11 +20,12 @@ app.get("/", (req, res) => {
 io.on("connection", (client) => {
     console.log("client connected");
     let name = " "
-    const messageArray = ["hello there", "Welcome", "good to see you "];
+    const messageArray = ["Hello there", "Welcome", "Good to see you "];
 
 
     const responses = {
         "hello": "How can I help?",
+        "bye": "Nice chatting!"
     }
 
     client.on('client-name', uname => {
@@ -41,14 +42,14 @@ io.on("connection", (client) => {
     //recive message from client 
     client.on('send-chat-Message', msg => {
         //data from client 
-        console.log(msg)
+        //    console.log(msg)
         //checking if input is string 
         if (typeof msg === "string") {
             client.emit('server-message', name + " says: " + msg);
             const response = responses[msg.toLowerCase()]
 
             if (!response) {
-                client.emit('server-message', "Server says: I dont understand ")
+                client.emit('server-message', "Server says: Someone will contact you soon ")
 
             } else {
                 client.emit('server-message', "Server says: " + response);
