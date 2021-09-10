@@ -27,6 +27,7 @@ io.on("connection", (client) => {
         "hello": "How can I help?",
         "bye": "Nice chatting!"
     }
+    //catching client side message
 
     client.on('client-name', uname => {
         name = uname;
