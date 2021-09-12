@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+
+    <!-- default path -->
+    <!-- connectiong library path part of node module folder  -->
+
+    <script src="/socket.io/socket.io.js">  </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <h2 class='d-flex justify-content-center'> Chatlog</h2>
+    <div id="message-container" class="container">
+
+    </div>
+
+    <div class="container m-4  d-flex justify-content-center ">
+        <input class="form-control  " type="text" id="name-input" placeholder="Enter your name" />
+
+        <input class="form-control  " type="text" id="message-input" placeholder="Enter your Message" />
+        <button class="btn btn-primary " type="submit" id="submit-button">submit</button>
+
+    </div>
+
+</body>
+
+<script>
+
+    var messageContainer = document.getElementById('message-container');
+    var submitButton = document.getElementById('submit-button');
+    var nameInput = document.getElementById('name-input');
+    var messageInput = document.getElementById('message-input');
+
+
+    console.log(submitButton);
+
+    var server, username;
+    console.log(username)
+    console.log(server)
+
+    //  function connectToSocket() {
+    //client
+    server = io();
+
+
+    console.log("server connected");
+
+
+
+    submitButton.addEventListener('click', e => {
+        e.preventDefault();
+        const name = nameInput.value;
+        const message = messageInput.value;
+        console.log(username)
+        console.log(server)
+
+
+        server.emit('send-chat-Message', { name: name, message: message })
+
+        nameInput.value = "";
+        messageInput.value = '';
+    })
+
+
+
+
+
+
+
+
+</script>
+
+</html>
