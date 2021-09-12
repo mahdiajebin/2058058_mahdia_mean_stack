@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2> Update Course</h2>
+
+
+    <label for="courseID"><b>Course ID</b></label>
+    <input type="text" placeholder="Enter Course ID" name="id" required id="courseID"> </br>
+
+    <label for="courseAmount"><b>Amount</b></label>
+    <input type="number" placeholder="Enter Amount" name="amount" required id="courseAmount">
+
+    <input type="submit" value="update course" onclick="submit()">
+    <input type="reset" value="reset">
+
+
+
+
+
+
+
+    <script>
+        function submit(e) {
+
+            const courseID = document.getElementById("courseID");
+            const courseAmount = document.getElementById("courseAmount");
+            if (courseID.value && courseAmount.value) {
+                fetch(`api/course`, {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    method: "PUT",
+                    body: JSON.stringify({ id: courseID.value, amount: courseAmount.value })
+
+                }).then(() => {
+                    courseID.value = "";
+                    courseAmount.value = "";
+                    alert("success")
+                }).catch((error) => {
+                    alert(error.message)
+                })
+
+            }
+
+
+        }
+
+
+
+
+
+    </script>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DELETE</title>
+
+</head>
+
+<body>
+    <h2> Delete Course</h2>
+
+
+
+    <label for="courseID"><b>Course ID</b></label>
+    <input type="text" placeholder="Enter Course ID" name="id" require id="courseID" /> </br>
+
+    </br>
+    <input type="submit" value="delete course" onclick="submit()" />
+    <input type="reset" value="reset" />
+
+
+
+
+
+
+
+    <script>
+        function submit(e) {
+
+            const courseID = document.getElementById("courseID");
+            if (courseID.value) {
+                fetch(`api/course/${courseID.value}`, {
+                    method: "delete"
+                }).then(() => {
+                    courseID.value = "";
+                    alert("success")
+                }).catch((error) => {
+                    alert(error.message)
+                })
+
+            }
+
+
+        }
+
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>
